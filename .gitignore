@@ -1,0 +1,14 @@
+*.save
+*.log.dmp
+*.log
+*.layout
+.git-auto
+bin
+obj
+tests_strok
+*.o
+*.exe
+*.cbp
+*.bmarks
+*.depend
+*.html

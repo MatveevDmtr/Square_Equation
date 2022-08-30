@@ -1,7 +1,14 @@
 #ifndef HANDLE_INPUT_H_INCLUDED
 #define HANDLE_INPUT_H_INCLUDED
 
-bool ifstop(char* str);
+/*!
+@brief
+
+@param[out] str
+
+@return
+*/
+bool ifstop(char* str); // const
 
 bool isdigit(char* str);
 

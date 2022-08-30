@@ -34,9 +34,9 @@ int test_solving_eq()
 
         $y;
         printf("\n%d/%d tests passed.\n", tests_passed, num_current_test - 1);
-    }
 
-    fclose(file_with_tests);
+        fclose(file_with_tests);
+    }
 
     return 0;
 }
@@ -55,7 +55,7 @@ bool single_test_of_eq(FILE* file, int test_num)
            right_root2 = 0;
 
     int right_num_solutions = 0;
-
+    // ret val
     fscanf(file, "%lg %lg %lg %d %lg %lg",
            &a, &b, &c, &right_num_solutions, &right_root1, &right_root2);
 
@@ -68,7 +68,7 @@ bool single_test_of_eq(FILE* file, int test_num)
                "Expected %d solutions, found %d. \n"
                "Expected %lg and %lg, found %lg and %lg.",
                test_num, right_num_solutions, num_solutions, right_root1, right_root2, root1, root2);
-    }
+    } // sort roots
     else if (!(is_equal(root1, right_root1) &&
                is_equal(root2, right_root2)) &&
              !(is_equal(root1, right_root2) &&

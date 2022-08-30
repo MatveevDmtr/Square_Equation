@@ -29,7 +29,7 @@ bool isdigit(char* str)
     bool is_allowed;
 
     for (int i = 0; i < str_len; i++)
-    {
+    {    // check via ASCII codes
         is_allowed = false;
         for (unsigned int j = 0; j < LEN_LIST_ALLOWED_SYM; j++)
         {
@@ -63,13 +63,8 @@ bool read_double(char* line, double* double_number)
 // reads strings and checks if user wants to stop
 bool read_coef(char* str_a, char* str_b, char* str_c)
 {
-    //scanf("%*s %*s %*s", MAX_LEN_STRING, str_a,
-    //                     MAX_LEN_STRING, str_b,
-    //                     MAX_LEN_STRING, str_c);
-    //scanf("%5s %5s %5s", str_a, str_b, str_c);
-
+    // copypasta
     $b;
-    //printf("addresses: %p %p %p\n", str_a, str_b, str_c);
 
     printf("Insert coefficients a:\n");
     $o;
@@ -80,8 +75,6 @@ bool read_coef(char* str_a, char* str_b, char* str_c)
     {
         return true;
     }
-
-    //printf("1 coef_a: %s\n", str_a);
 
     $b;
     printf("Insert coefficients b:\n");
@@ -94,8 +87,6 @@ bool read_coef(char* str_a, char* str_b, char* str_c)
         return true;
     }
 
-    //printf("2 coef_a: %s\n", str_a);
-
     $b;
     printf("Insert coefficients c:\n");
     $o;
@@ -107,12 +98,7 @@ bool read_coef(char* str_a, char* str_b, char* str_c)
         return true;
     }
 
-    //txDump(str_c);
-
-    /*printf("[MEOW]\n"
-           "A line: %s\n"
-           "B line: %s\n"
-           "C line: %s\n", str_a, str_b, str_c);*/
+    txDump(str_c);
 
     return ifstop(str_a) || ifstop(str_b) || ifstop(str_c);
 

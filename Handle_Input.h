@@ -8,13 +8,15 @@
 
 @return
 */
-bool ifstop(char* str); // const
+bool ifstop(const char* str); // const
 
-bool isdigit(char* str);
+bool isdigit(const char* str);
 
-bool read_double(char* line, double* double_number);
+bool read_double(const char* line, double* double_number);
 
-bool read_coef(char* str_c, char* str2, char* str3);
+bool read_one_coef(char* dest, char name_coef);
+
+bool read_all_coefs(char* str_c, char* str2, char* str3);
 
 int handle_errors(char* str_a, char* str_b, char* str_c,
                   double* ptr_a, double* ptr_b, double* ptr_c);

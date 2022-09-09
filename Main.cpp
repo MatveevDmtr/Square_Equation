@@ -41,7 +41,7 @@ int user_interface()
 
     while(!stop)
     {
-        stop = read_coef(str_a, str_b, str_c);
+        stop = read_all_coefs(str_a, str_b, str_c);
         int is_input_ok = 0;
 
         if(!stop)
@@ -95,7 +95,7 @@ int user_interface()
     if(argc == 1)
     {
         $r;
-        printf("Mode of the program hasn't been chosen.\n"
+        printf("Mode of the program has not been chosen.\n"
                 "Please, restart the program and "
                 "enter mode through the command line.\n"
                 "For example: solve\n");

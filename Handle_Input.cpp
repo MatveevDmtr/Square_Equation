@@ -10,45 +10,33 @@
         if(condition)\
         {printf("ERROR in line %d in \n%s \nFound (%s).\n", __LINE__, __FILE__, #condition);}
 
-const unsigned int LEN_LIST_ALLOWED_SYM = 12;
-const char LIST_ALLOWED_SYM[] = "0123456789.-";
 
-
-bool ifstop(char* str)
+bool ifstop(const char* str)
 {
     Assert(str == NULL);
 
     return strcmp(str, "stop") == 0;
 }
 
-bool isdigit(char* str)
+bool isdigit(const char* str)
 {
     Assert(str == NULL);
 
-    int str_len = strlen(str);
-    bool is_allowed;
+    char sym;
 
-    for (int i = 0; i < str_len; i++)
-    {    // check via ASCII codes
-        is_allowed = false;
-        for (unsigned int j = 0; j < LEN_LIST_ALLOWED_SYM; j++)
-        {
-            if(LIST_ALLOWED_SYM[j] == str[i])
-            {
-                is_allowed = true;
-            }
-        }
-        if(!is_allowed)
-        {
+    while ((sym = *str) != '\0')
+    {
+        if (!((sym >= '0' && sym <= '9') || sym == '-' || sym == '.'))
             return false;
-        }
+
+        str++;
     }
 
     return true;
 }
 
 // tries to convert string to double, returns success
-bool read_double(char* line, double* double_number)
+bool read_double(const char* line, double* double_number)
 {
     char* ptr_end = NULL;
 
@@ -60,48 +48,25 @@ bool read_double(char* line, double* double_number)
     return true;
 }
 
-// reads strings and checks if user wants to stop
-bool read_coef(char* str_a, char* str_b, char* str_c)
+bool read_one_coef(char* dest, char name_coef)
 {
-    // copypasta
     $b;
 
-    printf("Insert coefficients a:\n");
+    printf("Insert coefficients %c:\n", name_coef);
     $o;
-    scanf("%29s", str_a);
+    scanf("%29s", dest);
     while (getchar () != '\n');
 
-    if (ifstop(str_a))
-    {
+    if (ifstop(dest))
         return true;
-    }
 
-    $b;
-    printf("Insert coefficients b:\n");
-    $o;
-    scanf("%29s", str_b);
-    while (getchar () != '\n');
+    return false;
+}
 
-    if (ifstop(str_b))
-    {
-        return true;
-    }
-
-    $b;
-    printf("Insert coefficients c:\n");
-    $o;
-    scanf("%29s", str_c);
-    while (getchar () != '\n');
-
-    if (ifstop(str_c))
-    {
-        return true;
-    }
-
-    txDump(str_c);
-
-    return ifstop(str_a) || ifstop(str_b) || ifstop(str_c);
-
+// reads strings and checks if user wants to stop
+bool read_all_coefs(char* str_a, char* str_b, char* str_c)
+{
+    return read_one_coef(str_a, 'a') || read_one_coef(str_b, 'b') || read_one_coef(str_c, 'c');
 }
 
 int handle_errors(char* str_a, char* str_b, char* str_c,

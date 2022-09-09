@@ -16,7 +16,9 @@ int test_solving_eq()
 
     if(file_with_tests == NULL)
     {
+        $r;
         printf("File not found\n");
+        $d;
     }
     else
     {
@@ -55,9 +57,25 @@ bool single_test_of_eq(FILE* file, int test_num)
            right_root2 = 0;
 
     int right_num_solutions = 0;
-    // ret val
-    fscanf(file, "%lg %lg %lg %d %lg %lg",
-           &a, &b, &c, &right_num_solutions, &right_root1, &right_root2);
+    if (fscanf(file, "%lg %lg %lg %d %lg %lg",
+           &a, &b, &c, &right_num_solutions, &right_root1, &right_root2) != 6)
+    {
+        $r;
+        printf("Test %d failed: error in test file detected. \n", test_num);
+        $d;
+        int sym;
+        while (!feof(file))
+        {
+            sym = fgetc(file);
+            if (sym == '\n')
+                {
+                printf("left cause of new_line - ");
+                break;
+                }
+            printf("sym: %c\n", sym);
+        }
+        return false;
+    }
 
     int num_solutions = solve_equation(a, b, c, &root1, &root2);
 
@@ -78,11 +96,13 @@ bool single_test_of_eq(FILE* file, int test_num)
         printf("Test %d failed: incorrect solutions. \n"
                "Expected %lg and %lg, found %lg and %lg.\n",
                 test_num, right_root1, right_root2, root1, root2);
+        $d;
     }
     else
     {
         $g;
         printf("Test %d passed.\n", test_num);
+        $d;
         return true;
     }
 
